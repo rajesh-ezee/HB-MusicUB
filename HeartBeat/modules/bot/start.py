@@ -9,7 +9,7 @@ from pyrogram import *
 from pyrogram.types import * 
 
 PHONE_NUMBER_TEXT = (
-    " ✦𝗛𝗘𝗬..! 𝗠𝗔𝗦𝗧𝗘𝗥..!!👋!\n\n✦ 𝗜'𝗠 𝗔 𝗣𝗢𝗪𝗘𝗥𝗙𝗨𝗟 𝗭𝗘𝗨𝗦 𝗜𝗗 𝗨𝗦𝗘𝗥𝗕𝗢𝗧 𝗛𝗘𝗟𝗣𝗘𝗥?\n\n‣ 𝗜 𝗖𝗔𝗡 𝗛𝗘𝗟𝗣 𝗬𝗢𝗨 𝗧𝗢 𝗛𝗢𝗦𝗧 𝗬𝗢𝗨𝗥 𝗟𝗘𝗙𝗧 𝗖𝗟𝗜𝗘𝗡𝗧𝗦.\n\n‣ 𝗛𝗘𝗟𝗣𝗘𝗥 ✦: [sᴇssɪᴏɴ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛᴇʀ ʀᴏʙᴏᴛ](https://t.me/king_string_session_bot) \n\n‣ 𝗧𝗛𝗜𝗦 𝗜𝗦 𝗦𝗣𝗘𝗖𝗜𝗔𝗟𝗟𝗬 𝗙𝗢𝗥 𝗚𝗔𝗡𝗗𝗨 𝗣𝗘𝗢𝗣𝗟𝗘'𝗦(ʟᴀᴢʏ)\n\n‣ 𝗡𝗢𝗪 /clone {send your PyroGram ᴠ2 String Session}"
+    "<blockquote>❍ ɪ ʌᴍ 𝙃𝙀𝘼𝙍𝙏𝘽𝙀𝘼𝙏 ᵘˢᵉʳᵇᵒᵗ \n •───────────────────•</blockquote> \n <blockquote>❖ ᴛʜɪs ᴜʀ ᴄʟᴏɴᴇ ʌssɪsᴛʌɴᴛ \n❖ ᴘᴍ sᴇᴄᴜꝛɪᴛʏ (ᴡᴀꝛɴ | ʙʟᴏᴄᴋ) \n❖ ᴀғᴋ ғᴇʌᴛᴜꝛᴇ (ᴘᴍ & ɢꝛᴏᴜᴘ) \n❖ ᴍᴜsɪᴄ, ᴘʟʌʏ sᴏɴɢs ᴡɪᴛʜ ᴜʀ ᴏᴡɴ ɪᴅ(ɴᴏ ɴᴇᴇᴅ ᴍᴜsɪᴄ-ʙᴏᴛ) \n❖ ᴛʌɢ-ᴀʟʟ, ᴍᴇɴᴛɪᴏɴ ʌɴᴅ ʌᴜᴛᴏ-ꝛᴇᴘʟʏ ǫᴜᴏᴛᴇs ʀʌɪᴅ(ᴛʌɢ ᴡɪᴛʜ ʏᴏᴜꝛ ᴏᴡɴ ɪᴅ) \n❖ ᴄʜᴇᴄᴋ ɴʌᴍᴇ ʜɪsᴛᴏꝛʏ(ɴᴏ ɴᴇᴇᴅ sᴀɴɢ-ᴍʌᴛʌ) \n❖ sᴛʀɪᴄᴋᴇꝛ ᴋʌɴɢ(ᴍʌᴋᴇ sᴛɪᴄᴋᴇʀ) \n❖ ɢʙʌɴ,ɢᴍᴜᴛᴇ & ɪɴғᴏ(ɴᴏ ɴᴇᴇᴅ ʀᴏsᴇ-ʙᴏᴛ) \n❖ ғᴜɴ-ɢʌᴍᴇ ᴡɪᴛʜ ᴍᴏꝛᴇ ғᴇʌᴛᴜꝛᴇs</blockquote> \n <blockquote>❖ /ᴄʟᴏɴᴇ ʏᴏᴜꝛ sᴛʀɪɴɢ sᴇssɪᴏɴ</blockquote> \n<blockquote>\n•───────────────────•\nᴇxᴄʟᴜsɪᴠᴇ ғᴇʌᴛᴜꝛᴇ: \n 𝐒ʌᴠᴇ 𝐒ᴇʟғ 𝐃ɪsᴛꝛᴜᴄᴛ 𝐈ᴍʌɢᴇ \n (𝙊ɴᴇ-ᴛɪᴍᴇ 𝙑ɪᴇᴡ 𝙋ɪᴄ)\n•───────────────────•</blockquote>"
 )
 
 @app.on_message(filters.command("start"))
@@ -25,6 +25,7 @@ async def hello(client: app, message):
                 InlineKeyboardButton("⌯ ƨʋᴘᴘσят ⌯", url="t.me/HeartBeat_Fam"),
             ],
             [
+                InlineKeyboardButton("⌯ ɢ-ɢ//t.me/HeartBeat_Offi/13"),
                 InlineKeyboardButton("⌯ ʌʟʟ ʙσтƨ ⌯", url="https://t.me/HeartBeat_Offi/13"),
             ],
             ]
