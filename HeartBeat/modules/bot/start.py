@@ -25,7 +25,7 @@ async def hello(client: app, message):
                 InlineKeyboardButton("⌯ ƨʋᴘᴘσят ⌯", url="t.me/HeartBeat_Fam"),
             ],
             [
-                InlineKeyboardButton("⌯ ƨяιвɢɢɛи ⌯", url="t.me/HeartBeat_Offi/13"),
+                InlineKeyboardButton("⌯ ƨтяɪиɢ-ɢɛи ⌯", url="t.me/heart2beat_bot"),
                 InlineKeyboardButton("⌯ ʌʟʟ ʙσтƨ ⌯", url="https://t.me/HeartBeat_Offi/13"),
             ],
             ]
