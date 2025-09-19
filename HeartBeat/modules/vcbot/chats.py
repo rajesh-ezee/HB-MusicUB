@@ -6,7 +6,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Set Stream Chat
-@Client.on_message(filters.command("setchat", ".") & SUDOERS)
+@Client.on_message(filters.command("setchat", ".") & SUDO_USERS)
 async def set_stream_chat(client, message):
     aux = await eor(message, "**🔄 Processing ...**")
     user_id = message.from_user.id
