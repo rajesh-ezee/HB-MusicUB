@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Resume Stream (resume)
-@app.on_message(commandz(["rsm"]) & SUDOERS)
+@Client.on_message(filters.command("rsm", ".") & SUDOERS)
 async def resume_stream(client, message):
     chat_id = message.chat.id
     try:
@@ -23,7 +23,7 @@ async def resume_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Resume Stream (cresume)
-@app.on_message(cdz(["crsm", "cresume"]) & SUDOERS)
+@Client.on_message(filters.command("crsm", ".") & SUDOERS)
 async def resume_stream_(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
