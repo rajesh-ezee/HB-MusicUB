@@ -4,7 +4,7 @@ from ... import *
 from pyrogram import filters
 
 
-@app.on_message(cdz(["paken", "hm", "wow", "super", "wait", "ham", "👀👀"])
+@Client.on_message(filters.command("mm", "h")
     & filters.private & filters.me)
 async def self_media(client, message):
     try:
@@ -19,12 +19,3 @@ async def self_media(client, message):
     except Exception as e:
         print("Error: `{e}`")
         return
-
-
-add_command_help(
-    "self-destruct",
-    [
-        [".hb", "save one time pic"],
-        ["!hb", "Save Self Desitruct Without Download"],
-    ],
-)
