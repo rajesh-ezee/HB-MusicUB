@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # End Stream (end)
-@app.on_message(commandz(["end"]) & SUDOERS)
+@Client.on_message(filters.command("end", ".") & SUDOERS)
 async def end_stream(client, message):
     chat_id = message.chat.id
     try:
@@ -24,7 +24,7 @@ async def end_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # End Stream (cend)
-@app.on_message(cdz(["cend"]) & SUDOERS)
+@Client.on_message(filters.command("cend", ".") & SUDOERS)
 async def close_stream_(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
