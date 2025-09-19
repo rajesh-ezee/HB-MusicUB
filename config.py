@@ -21,12 +21,13 @@ GIT_TOKEN = getenv("GIT_TOKEN") #personal access token
 REPO_URL = getenv("REPO_URL", "https://t.me/GhosttBatt")
 BRANCH = getenv("BRANCH", "main") #don't change
 
+COMMAND_HANDLERS = []
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", ". ! > *").split())
-    #######################################
-    for x in COMMAND_PREFIXES:
-        COMMAND_HANDLERS.append(x)
-    COMMAND_HANDLERS.append('')
-    #######################################
+#######################################
+for x in COMMAND_PREFIXES:
+    COMMAND_HANDLERS.append(x)
+COMMAND_HANDLERS.append('')
+#######################################
  
 STRING_SESSION1 = getenv("STRING_SESSION1", "")
 STRING_SESSION2 = getenv("STRING_SESSION2", "")
