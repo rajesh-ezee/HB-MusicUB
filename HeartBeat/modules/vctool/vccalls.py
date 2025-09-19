@@ -21,7 +21,7 @@ async def get_vc_call(client, message):
     return full_chat.call if full_chat else False
 
 
-@Client.on_message(filters.command("startvc", ".") & ~filters.private)
+@Client.on_message(filters.command("startvc", ".") & filters.me)
 async def start_vc(client, message):
     chat_id = message.chat.id
     aux = await eor(message, "**🔄 Processing...**")
@@ -44,7 +44,7 @@ async def start_vc(client, message):
         await aux.edit("**❌ Failed to Start VC.**")
 
 
-@Client.on_message(filters.command("endvc", ".") & ~filters.private)
+@Client.on_message(filters.command("endvc", ".") & filters.me)
 async def stop_vc(client, message):
     aux = await eor(message, "**🔄 Processing...**")
     try:
@@ -59,7 +59,7 @@ async def stop_vc(client, message):
         await aux.edit("**❌ Failed to End VC.**")
 
 
-@Client.on_message(filters.command("restartvc", ".") & ~filters.private)
+@Client.on_message(filters.command("restartvc", ".") & filters.me)
 async def restart_vc(client, message):
     chat_id = message.chat.id
     aux = await eor(message, "**🔄 Restarting VC...**")
