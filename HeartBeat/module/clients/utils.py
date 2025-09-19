@@ -11,8 +11,8 @@ import yt_dlp
 from youtubesearchpython import VideosSearch
 import re
 
-PREFIXES = Config.COMMAND_PREFIXES
-HANDLERS = Config.COMMAND_HANDLERS
+PREFIXES = config.COMMAND_PREFIXES
+HANDLERS = config.COMMAND_HANDLERS
 
 logger = logging.getLogger(__name__)
 
@@ -158,7 +158,7 @@ async def get_media_info(file: str, query: str = None, videoid: Union[bool, str]
 
 class Database:
     def __init__(self):
-        self.client = motor.motor_asyncio.AsyncIOMotorClient(Config.MONGO_DATABASE)
+        self.client = motor.motor_asyncio.AsyncIOMotorClient(config.MONGO_DATABASE)
         self.db = self.client["music_bot"]
         self.queues_collection = self.db["queues"]
 
