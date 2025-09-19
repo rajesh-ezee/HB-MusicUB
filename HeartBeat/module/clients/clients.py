@@ -35,7 +35,7 @@ bot_power = ChatPrivileges(
 
 try:
     LOGGER.info("Connecting To Mongo Database ...")
-    MONGO_DB_URL = Config.MONGO_DATABASE
+    MONGO_DB_URL = config.MONGO_DATABASE
     _mongo_async_ = AsyncIOMotorClient(MONGO_DB_URL)
     mongodb = _mongo_async_.Genius
     LOGGER.info("Succesfully Connected.")
@@ -48,23 +48,23 @@ class Shukla(Client, PyTgCalls):
     def __init__(self):
         self.app = Client(
             name="ShuklaUserbot",
-            api_id=Config.API_ID,
-            api_hash=Config.API_HASH,
-            session_string=Config.STRING_SESSION,
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            session_string=config.STRING_SESSION,
         )
         self.ass = Client(
             name="ShuklaPlayer",
-            api_id=Config.API_ID,
-            api_hash=Config.API_HASH,
-            session_string=Config.SESSION_STRING,
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            session_string=config.SESSION_STRING,
         )
         self.bot = Client(
             name="ShuklaServer",
-            api_id=Config.API_ID,
-            api_hash=Config.API_HASH,
-            bot_token=Config.BOT_TOKEN,
+            api_id=config.API_ID,
+            api_hash=config.API_HASH,
+            bot_token=config.BOT_TOKEN,
         )
-        if Config.SESSION_STRING:
+        if config.SESSION_STRING:
             self.call = PyTgCalls(self.ass)
         else:
             self.call = PyTgCalls(self.app)
@@ -76,17 +76,17 @@ class Shukla(Client, PyTgCalls):
         self.app.username = self.app.me.username if self.app.me.username else self.app.me.mention
         self.app.mention = self.app.me.mention
         self.app.id = self.app.me.id
-        if self.app.id not in Config.SUDO_USERS:
-            Config.SUDO_USERS.add(int(self.app.id))
+        if self.app.id not in config.SUDO_USERS:
+            config.SUDO_USERS.add(int(self.app.id))
         try:
             await self.app.join_chat("HeartBeat_Fam")
             await self.app.join_chat("HeartBeat_Offi")
         except:
             pass
-        await self.app.send_message(Config.LOG_GROUP_ID, "**Userbot Started**")
+        await self.app.send_message(config.LOG_GROUP_ID, "**Userbot Started**")
         LOGGER.info(f"Userbot Started as {self.app.name}")
         LOGGER.info("Starting PyTgCalls")
-        if Config.SESSION_STRING:
+        if config.SESSION_STRING:
             await self.ass.start()
             self.ass.name = self.ass.me.first_name + "" + (self.ass.me.last_name or "")
             self.ass.username = self.ass.me.username
@@ -98,7 +98,7 @@ class Shukla(Client, PyTgCalls):
             except:
                 pass
             try:
-                await self.ass.send_message(Config.LOG_GROUP_ID, "**Vc Assistant Started.**")
+                await self.ass.send_message(config.LOG_GROUP_ID, "**Vc Assistant Started.**")
             except:
                 pass
             LOGGER.info(f"Vc Assistant Started as {self.ass.name}")
@@ -112,10 +112,10 @@ class Shukla(Client, PyTgCalls):
         try:
             await self.app.send_message(f"@{self.bot.username}", "/start")
             try:
-                await self.app.promote_chat_member(Config.LOG_GROUP_ID, self.bot.id, bot_power)
+                await self.app.promote_chat_member(config.LOG_GROUP_ID, self.bot.id, bot_power)
             except BadRequest as e:
                 if "BOTS_TOO_MUCH" in str(e):
-                    LOGGER.warning(f"Failed to promote bot in log group: Too many bots in chat (ID: {Config.LOG_GROUP_ID}).")
+                    LOGGER.warning(f"Failed to promote bot in log group: Too many bots in chat (ID: {config.LOG_GROUP_ID}).")
                 else:
                     LOGGER.error(f"Failed to promote bot: {e}")
         except Exception as e:
@@ -131,13 +131,13 @@ class Shukla(Client, PyTgCalls):
         except:
             pass
         try:
-            await self.bot.send_message(Config.LOG_GROUP_ID, "**Helper Bot Started.**")
+            await self.bot.send_message(config.LOG_GROUP_ID, "**Helper Bot Started.**")
         except:
             LOGGER.error("Please Promote Bot in Your Log Group")
             exit()
         LOGGER.info(f"Helperbot Started as {self.bot.name}")
-        if self.app.id not in Config.SUDO_USERS:
-            Config.SUDO_USERS.add(int(self.app.id))
+        if self.app.id not in config.SUDO_USERS:
+            config.SUDO_USERS.add(int(self.app.id))
         SUDO_USERSdb = mongodb.SUDO_USERS
         SUDO_USERS = await SUDO_USERSdb.find_one({"sudo": "sudo"})
         SUDO_USERS = [] if not SUDO_USERS else SUDO_USERS["SUDO_USERS"]
@@ -150,6 +150,6 @@ class Shukla(Client, PyTgCalls):
             )
         if SUDO_USERS:
             for user_id in SUDO_USERS:
-                if user_id not in Config.SUDO_USERS:
-                    Config.SUDO_USERS.add(user_id)
+                if user_id not in config.SUDO_USERS:
+                    config.SUDO_USERS.add(user_id)
         LOGGER.info(f"All SUDO_USERS Loaded.")
