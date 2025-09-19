@@ -52,7 +52,7 @@ class Shukla(Client, PyTgCalls):
             name="ShuklaPlayer",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
-            session_string=config.SESSION_STRING,
+            session_string=config.STRING_SESSION,
         )
         self.bot = Client(
             name="ShuklaServer",
@@ -60,7 +60,7 @@ class Shukla(Client, PyTgCalls):
             api_hash=config.API_HASH,
             bot_token=config.BOT_TOKEN,
         )
-        if config.SESSION_STRING:
+        if config.STRING_SESSION:
             self.call = PyTgCalls(self.ass)
         else:
             self.call = PyTgCalls(self.app)
@@ -82,7 +82,7 @@ class Shukla(Client, PyTgCalls):
         await self.app.send_message(config.LOG_GROUP_ID, "**Userbot Started**")
         LOGGER.info(f"Userbot Started as {self.app.name}")
         LOGGER.info("Starting PyTgCalls")
-        if config.SESSION_STRING:
+        if config.STRING_SESSION:
             await self.ass.start()
             self.ass.name = self.ass.me.first_name + "" + (self.ass.me.last_name or "")
             self.ass.username = self.ass.me.username
