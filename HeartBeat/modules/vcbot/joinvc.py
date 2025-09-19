@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 SILENCE_FILE = "HeartBeat/resource/silence.mp3"
 
 # Join Voice Chat (vcjoin)
-@Client.on_message(filters.command("vcjoin", ".") & SUDOERS)
+@Client.on_message(filters.command("vcjoin", ".") & SUDO_USERS)
 async def join_voice_chat(client, message):
     chat_id = message.chat.id
     m = await eor(message, "**🔄 Joining Voice Chat ...**")
@@ -39,7 +39,7 @@ async def join_voice_chat(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Join Voice Chat (cjoin)
-@Client.on_message(filters.command("cjoin", ".") & SUDOERS)
+@Client.on_message(filters.command("cjoin", ".") & SUDO_USERS)
 async def custom_join_voice_chat(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
@@ -68,7 +68,7 @@ async def custom_join_voice_chat(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Leave Voice Chat (vcleave)
-@Client.on_message(filters.command("vcleave", ".") & SUDOERS)
+@Client.on_message(filters.command("vcleave", ".") & SUDO_USERS)
 async def leave_voice_chat(client, message):
     chat_id = message.chat.id
     m = await eor(message, "**🔄 Leaving Voice Chat ...**")
@@ -83,7 +83,7 @@ async def leave_voice_chat(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Leave Voice Chat (cvcleave)
-@Client.on_message(filters.command("cvcleave", ".") & SUDOERS)
+@Client.on_message(filters.command("cvcleave", ".") & SUDO_USERS)
 async def custom_leave_voice_chat(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
