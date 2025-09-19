@@ -13,7 +13,7 @@ import re
 logger = logging.getLogger(__name__)
 
 # Audio Stream (play)
-@Client.on_message(filters.command(["ply", ".") & SUDO_USERS)
+@Client.on_message(filters.command("ply", ".") & SUDO_USERS)
 async def audio_stream(client, message):
     chat_id = message.chat.id
     replied = message.reply_to_message
