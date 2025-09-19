@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Pause Stream (pause)
-@app.on_message(commandz(["pause"]) & SUDOERS)
+@Client.on_message(filters.command("pause", ".") & SUDOERS)
 async def pause_stream(client, message):
     chat_id = message.chat.id
     try:
@@ -23,7 +23,7 @@ async def pause_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Pause Stream (cpause)
-@app.on_message(cdz(["cpse", "cpause"]) & SUDOERS)
+@Client.on_message(filters.command("cpse", ".") & SUDOERS)
 async def pause_stream_(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
