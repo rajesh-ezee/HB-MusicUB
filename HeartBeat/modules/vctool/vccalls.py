@@ -1,4 +1,4 @@
-from ... import app, cdx, eor
+from ... import app, eor
 from ...module.helpers.wrapper import sudo_users_only
 from pyrogram import filters
 from pyrogram.raw.functions.channels import GetFullChannel
