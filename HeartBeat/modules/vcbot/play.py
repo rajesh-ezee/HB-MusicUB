@@ -13,7 +13,7 @@ import re
 logger = logging.getLogger(__name__)
 
 # Audio Stream (play)
-@Client.on_message(filters.command(["ply", ".") & SUDOERS)
+@Client.on_message(filters.command(["ply", ".") & SUDO_USERS)
 async def audio_stream(client, message):
     chat_id = message.chat.id
     replied = message.reply_to_message
@@ -65,7 +65,7 @@ async def audio_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Video Stream (vplay)
-@Client.on_message(filters.command("vply", ".") & SUDOERS)
+@Client.on_message(filters.command("vply", ".") & SUDO_USERS)
 async def video_stream(client, message):
     chat_id = message.chat.id
     replied = message.reply_to_message
@@ -117,7 +117,7 @@ async def video_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Audio Stream (cplay)
-@Client.on_message(filters.command("cply",".") & SUDOERS)
+@Client.on_message(filters.command("cply",".") & SUDO_USERS)
 async def audio_stream_(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
@@ -163,7 +163,7 @@ async def audio_stream_(client, message):
         await aux.edit("**Please Try Again!**")
 
 # Video Stream (cvplay)
-@Client.on_message(filters.command("cvply", ".") & SUDOERS)
+@Client.on_message(filters.command("cvply", ".") & SUDO_USERS)
 async def video_stream_(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
