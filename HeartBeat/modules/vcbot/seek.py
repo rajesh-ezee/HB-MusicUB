@@ -166,7 +166,7 @@ async def speed_stream_(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Bassboost Stream (bassboost)
-@Client.on_message(filters.command([bassboost", ".") & SUDO_USERS)
+@Client.on_message(filters.command(bassboost", ".") & SUDO_USERS)
 async def bassboost_stream(client, message):
     chat_id = message.chat.id
     if len(message.command) < 2:
