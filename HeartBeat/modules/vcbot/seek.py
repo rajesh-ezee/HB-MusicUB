@@ -10,7 +10,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Seek Stream (seek)
-@app.on_message(commandz(["seek"]) & SUDOERS)
+@Client.on_message(filters.command("seek", ".") & SUDOERS)
 async def seek_stream(client, message):
     chat_id = message.chat.id
     if len(message.command) < 2:
@@ -50,7 +50,7 @@ async def seek_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Seek Stream (cseek)
-@app.on_message(cdz(["cseek"]) & SUDOERS)
+@Client.on_message(filters.command("cseek", ".") & SUDOERS)
 async def seek_stream_(client, message):
     if not message.from_user:
         return await eor(message, "**🤖 This command cannot be used by anonymous users!**")
@@ -95,7 +95,7 @@ async def seek_stream_(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Speed Stream (speed)
-@app.on_message(commandz(["speed"]) & SUDOERS)
+@Client.on_message(filters.command("speed", ".") & SUDOERS)
 async def speed_stream(client, message):
     chat_id = message.chat.id
     if len(message.command) < 2:
@@ -128,7 +128,7 @@ async def speed_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Speed Stream (cspeed)
-@app.on_message(cdz(["cspeed"]) & SUDOERS)
+@Client.on_message(filters.command("cspeed", ".") & SUDOERS)
 async def speed_stream_(client, message):
     if not message.from_user:
         return await eor(message, "**🤖 This command cannot be used by anonymous users!**")
@@ -166,7 +166,7 @@ async def speed_stream_(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Bassboost Stream (bassboost)
-@app.on_message(commandz(["bassboost"]) & SUDOERS)
+@Client.on_message(filters.command([bassboost", ".") & SUDOERS)
 async def bassboost_stream(client, message):
     chat_id = message.chat.id
     if len(message.command) < 2:
@@ -198,7 +198,7 @@ async def bassboost_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Bassboost Stream (cbassboost)
-@app.on_message(cdz(["cbassboost"]) & SUDOERS)
+@Client.on_message(filters.command("cbassboost", ".") & SUDOERS)
 async def bassboost_stream_(client, message):
     if not message.from_user:
         return await eor(message, "**🤖 This command cannot be used by anonymous users!**")
