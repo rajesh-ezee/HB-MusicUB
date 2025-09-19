@@ -7,7 +7,7 @@ from ...module.mongo.streams import *
 from ...module.utilities import queues
 
 
-@app.on_message(cdx(["lve", "leave", "leavevc"]) & ~filters.private)
+@Client.on_message(filters.command("lve", ".") & ~filters.private)
 @sudo_users_only
 async def leave_vc(client, message):
     chat_id = message.chat.id
@@ -29,7 +29,7 @@ async def leave_vc(client, message):
         print(f"Error: {e}")
 
 
-@app.on_message(cdz(["clve", "cleave", "cleavevc"]))
+@Client.on_message(filters.command(["clve", "."]))
 @sudo_users_only
 async def leave_vc_(client, message):
     user_id = message.from_user.id
