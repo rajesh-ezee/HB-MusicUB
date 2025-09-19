@@ -31,7 +31,7 @@ bot_power = ChatPrivileges(
 
 try:
     LOGGER.info("Connecting To Mongo Database ...")
-    MONGO_DB_URL = config.MONGO_DATABASE
+    MONGO_DB_URL = config.MONGO_URL
     _mongo_async_ = AsyncIOMotorClient(MONGO_DB_URL)
     mongodb = _mongo_async_.Genius
     LOGGER.info("Succesfully Connected.")
