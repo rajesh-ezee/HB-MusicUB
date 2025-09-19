@@ -28,6 +28,8 @@ for x in COMMAND_PREFIXES:
     COMMAND_HANDLERS.append(x)
 COMMAND_HANDLERS.append('')
 #######################################
+#Music_Assistant
+STRING_SESSION = getenv("STRING_SESSION", "")
  
 STRING_SESSION1 = getenv("STRING_SESSION1", "")
 STRING_SESSION2 = getenv("STRING_SESSION2", "")
