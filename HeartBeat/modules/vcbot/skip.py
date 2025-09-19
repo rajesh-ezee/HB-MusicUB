@@ -9,7 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # Skip Stream (skip)
-@app.on_message(commandz(["skip"]) & SUDOERS)
+@Client.on_message(filters.command("skp", ".") & SUDOERS)
 async def skip_stream(client, message):
     chat_id = message.chat.id
     try:
@@ -38,7 +38,7 @@ async def skip_stream(client, message):
         await eor(message, f"**Error:** `{e}`")
 
 # Skip Stream (cskip)
-@app.on_message(cdz(["cskp", "cskip"]) & SUDOERS & ~filters.private)
+@Client.on_message(filters.command("cskp", ".") & SUDOERS & ~filters.private)
 async def skip_stream_(client, message):
     user_id = message.from_user.id
     chat_id = await get_chat_id(user_id)
