@@ -9,7 +9,7 @@ PMPERMIT_MESSAGE = (
 
 BLOCKED = "**<blockquote>ʙᴇᴇᴘ ʙᴏᴏᴘ ꜰᴏᴜɴᴅᴇᴅ ᴀ ꜱᴘᴀᴍᴍᴇʀ!, ʙʟᴏᴄᴋᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ!</blockquote>**"
 
-LIMIT = 5
+LIMIT = 3
 
 
 async def set_pm(value: bool):
