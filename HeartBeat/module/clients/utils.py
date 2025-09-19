@@ -10,6 +10,7 @@ from pyrogram.types import InlineKeyboardButton
 import yt_dlp
 from youtubesearchpython import VideosSearch
 import re
+import config
 
 PREFIXES = config.COMMAND_PREFIXES
 HANDLERS = config.COMMAND_HANDLERS
