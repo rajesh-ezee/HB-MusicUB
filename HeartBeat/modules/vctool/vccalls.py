@@ -1,4 +1,4 @@
-from ... import app, eor
+from ... import app
 from ...module.helpers.wrapper import sudo_users_only
 from pyrogram import filters
 from pyrogram.raw.functions.channels import GetFullChannel
@@ -6,6 +6,15 @@ from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall
 from pyrogram.raw.types import InputPeerChannel, InputPeerChat
 
+async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
+    apa = (
+        message.edit_text
+        if bool(message.from_user and message.from_user.is_self or message.outgoing)
+        else (message.reply_to_message or message).reply_text
+    )
+    return await apa(*args, **kwargs)
+
+eor = edit_or_reply
 
 async def get_vc_call(client, message):
     chat_id = message.chat.id
