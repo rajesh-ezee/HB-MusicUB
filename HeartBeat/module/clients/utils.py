@@ -158,7 +158,7 @@ async def get_media_info(file: str, query: str = None, videoid: Union[bool, str]
 
 class Database:
     def __init__(self):
-        self.client = motor.motor_asyncio.AsyncIOMotorClient(config.MONGO_DATABASE)
+        self.client = motor.motor_asyncio.AsyncIOMotorClient(config.MONGO_URL)
         self.db = self.client["music_bot"]
         self.queues_collection = self.db["queues"]
 
