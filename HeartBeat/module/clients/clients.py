@@ -1,5 +1,6 @@
 import asyncio
 
+from .modules.clients.clients import Shukla
 from pyrogram import Client
 from pyrogram.types import ChatPrivileges
 from pytgcalls import PyTgCalls
@@ -8,6 +9,9 @@ from pyrogram.errors import BadRequest  # Import BadRequest for error handling
 
 import config
 from ...console import LOGGER
+
+heartbeat = Shukla()
+heartbeat = call.heartbeat
 
 ass_power = ChatPrivileges(
     can_change_info=True,
