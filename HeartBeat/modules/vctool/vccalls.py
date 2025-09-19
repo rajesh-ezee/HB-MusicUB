@@ -1,5 +1,6 @@
 from ... import app
 from pyrogram import filters
+from pyrogram.types import Message
 from pyrogram.raw.functions.channels import GetFullChannel
 from pyrogram.raw.functions.messages import GetFullChat
 from pyrogram.raw.functions.phone import CreateGroupCall, DiscardGroupCall
