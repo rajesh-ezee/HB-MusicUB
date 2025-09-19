@@ -72,8 +72,8 @@ class Shukla(Client, PyTgCalls):
         self.app.username = self.app.me.username if self.app.me.username else self.app.me.mention
         self.app.mention = self.app.me.mention
         self.app.id = self.app.me.id
-        if self.app.id not in Config.SUDOERS:
-            Config.SUDOERS.add(int(self.app.id))
+        if self.app.id not in Config.SUDO_USERS:
+            Config.SUDO_USERS.add(int(self.app.id))
         try:
             await self.app.join_chat("HeartBeat_Fam")
             await self.app.join_chat("HeartBeat_Offi")
@@ -132,20 +132,20 @@ class Shukla(Client, PyTgCalls):
             LOGGER.error("Please Promote Bot in Your Log Group")
             exit()
         LOGGER.info(f"Helperbot Started as {self.bot.name}")
-        if self.app.id not in Config.SUDOERS:
-            Config.SUDOERS.add(int(self.app.id))
-        sudoersdb = mongodb.sudoers
-        sudoers = await sudoersdb.find_one({"sudo": "sudo"})
-        sudoers = [] if not sudoers else sudoers["sudoers"]
-        if self.app.id not in sudoers:
-            sudoers.append(self.app.id)
-            await sudoersdb.update_one(
+        if self.app.id not in Config.SUDO_USERS:
+            Config.SUDO_USERS.add(int(self.app.id))
+        SUDO_USERSdb = mongodb.SUDO_USERS
+        SUDO_USERS = await SUDO_USERSdb.find_one({"sudo": "sudo"})
+        SUDO_USERS = [] if not SUDO_USERS else SUDO_USERS["SUDO_USERS"]
+        if self.app.id not in SUDO_USERS:
+            SUDO_USERS.append(self.app.id)
+            await SUDO_USERSdb.update_one(
                 {"sudo": "sudo"},
-                {"$set": {"sudoers": sudoers}},
+                {"$set": {"SUDO_USERS": SUDO_USERS}},
                 upsert=True,
             )
-        if sudoers:
-            for user_id in sudoers:
-                if user_id not in Config.SUDOERS:
-                    Config.SUDOERS.add(user_id)
-        LOGGER.info(f"All Sudoers Loaded.")
+        if SUDO_USERS:
+            for user_id in SUDO_USERS:
+                if user_id not in Config.SUDO_USERS:
+                    Config.SUDO_USERS.add(user_id)
+        LOGGER.info(f"All SUDO_USERS Loaded.")
