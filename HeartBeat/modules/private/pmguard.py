@@ -32,7 +32,7 @@ def get_arg(message):
     return " ".join(split[1:])
 
 
-@Client.on_message(filters.command("setlimit", ["."]) & filters.me)
+@Client.on_message(filters.command("xsetlimit", ["."]) & filters.me)
 async def pmguard(client, message):
     arg = get_arg(message)
     if not arg:
@@ -42,7 +42,7 @@ async def pmguard(client, message):
     await message.edit(f"**Limit set to {arg}**")
 
 
-@Client.on_message(filters.command("setblockmsg", ["."]) & filters.me)
+@Client.on_message(filters.command("xsetblockmsg", ["."]) & filters.me)
 async def setpmmsg(client, message):
     arg = get_arg(message)
     if not arg:
@@ -77,7 +77,7 @@ async def deny(client, message):
 
 
 # 🔹 New Command: Set PM Image
-@Client.on_message(filters.command("setpmimg", ["."]) & filters.me)
+@Client.on_message(filters.command("xsetpmimg", ["."]) & filters.me)
 async def set_pm_image(client, message: Message):
     if not message.reply_to_message or not message.reply_to_message.photo:
         await message.edit("**Reply to an image with `.setpmimg` to set it as PM Permit image.**")
