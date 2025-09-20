@@ -21,7 +21,7 @@ async def pmguard(client, message):
     if arg == "on":
         await HeartBeat.set_pm(True)
         await message.edit("**PM Guard Activated**")
-@Client.on_message(filters.command("setpmmsg", ["."]) & filters.me)
+@Client.on_message(filters.command("xsetpmmsg", ["."]) & filters.me)
 async def setpmmsg(client, message):
     arg = get_arg(message)
     if not arg:
