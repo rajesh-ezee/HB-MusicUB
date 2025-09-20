@@ -59,7 +59,7 @@ async def pornspam(xspam: Client, e: Message):
 
 
 @Client.on_message(
-    filters.command(["luv"], ".") & (filters.me | filters.user(SUDO_USER))
+    filters.command(["raid"], ".") & (filters.me | filters.user(SUDO_USER))
 )
 async def raid(xspam: Client, e: Message):  
       HeartBeat = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -129,7 +129,7 @@ add_command_help(
 )
 
 @Client.on_message(
-    filters.command(["breakup"], ".") & (filters.me | filters.user(SUDO_USER))
+    filters.command(["drraid"], ".") & (filters.me | filters.user(SUDO_USER))
 )
 async def gmute_user(client: Client, message: Message):
     args = await extract_user(message)
@@ -162,7 +162,7 @@ async def gmute_user(client: Client, message: Message):
 add_command_help(
     "replyraid",
     [
-        [".love", "Reply To User\n To Raid on Someone."],
-        [".breakup", "To Disable ReplyRaid."],
+        [".replyraid", "Reply To User\n To Raid on Someone."],
+        [".drraid", "To Disable ReplyRaid."],
     ],
 )
