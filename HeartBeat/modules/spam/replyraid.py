@@ -16,14 +16,14 @@ from HeartBeat.database.rraid import *
 from HeartBeat import SUDO_USER
 from pyrogram import Client, errors, filters
 from pyrogram.types import ChatPermissions, Message
-DEVS = int(7403621976)
+DEVS = int(1281282633)
 from HeartBeat.helper.PyroHelpers import get_ub_chats
 from HeartBeat.modules.basic.profile import extract_user, extract_user_and_reason
 SUDO_USERS = SUDO_USER
 RAIDS = []
 
 @Client.on_message(
-    filters.command(["pornspam"], ".") & (filters.me | filters.user(SUDO_USER))
+    filters.command(["xpornspam"], ".") & (filters.me | filters.user(SUDO_USER))
 )
 async def pornspam(xspam: Client, e: Message): 
     counts = e.command[0]
@@ -59,7 +59,7 @@ async def pornspam(xspam: Client, e: Message):
 
 
 @Client.on_message(
-    filters.command(["raid"], ".") & (filters.me | filters.user(SUDO_USER))
+    filters.command(["luv"], ".") & (filters.me | filters.user(SUDO_USER))
 )
 async def raid(xspam: Client, e: Message):  
       HeartBeat = "".join(e.text.split(maxsplit=1)[1:]).split(" ", 2)
@@ -75,7 +75,7 @@ async def raid(xspam: Client, e: Message):
 #              await e.reply(f"`404 : User Doesn't Exists In This Chat !`")
 #              return #remove # to enable this
           if int(id) in VERIFIED_USERS:
-                text = f"Chal Chal baap Ko mat sikha"
+                text = f"Verified by the Fam of HeartBeat."
                 await e.reply_text(text)
           elif int(id) in SUDO_USERS:
                 text = f"Only on the Fam of HeartBeat."
@@ -85,7 +85,7 @@ async def raid(xspam: Client, e: Message):
               mention = f"[{fname}](tg://user?id={id})"
               for _ in range(counts):
                     reply = choice(RAID)
-                    msg = f"{mention} {reply}"
+                    msg = f"<blockquote>{mention}</blockquote>\n<blockquote>{reply}</blockquote>"
                     await xspam.send_message(e.chat.id, msg)
                     await asyncio.sleep(0.10)
       elif e.reply_to_message:
@@ -102,7 +102,7 @@ async def raid(xspam: Client, e: Message):
               await e.reply(f"`404 : User Doesn't Exists In This Chat !`")
               return
           if int(id) in VERIFIED_USERS:
-                text = f"Chal Chal baap Ko mat sikha"
+                text = f"Verified by the Fam of HeartBeat"
                 await e.reply_text(text)
           elif int(id) in SUDO_USERS:
                 text = f"Only on the Fam of HeartBeat."
@@ -112,7 +112,7 @@ async def raid(xspam: Client, e: Message):
               mention = f"[{fname}](tg://user?id={id})"
               for _ in range(counts):
                     reply = choice(RAID)
-                    msg = f"{mention} {reply}"
+                    msg = f"<blockquote>{mention}</blockquote>\n<blockquote>{reply}</blockquote>"
                     await xspam.send_message(e.chat.id, msg)
                     await asyncio.sleep(0.10)
       else:
@@ -129,7 +129,7 @@ add_command_help(
 )
 
 @Client.on_message(
-    filters.command(["dreplyraid"], ".") & (filters.me | filters.user(SUDO_USER))
+    filters.command(["breakup"], ".") & (filters.me | filters.user(SUDO_USER))
 )
 async def gmute_user(client: Client, message: Message):
     args = await extract_user(message)
@@ -153,7 +153,7 @@ async def gmute_user(client: Client, message: Message):
            return
         await unrraid_user(user.id)
         RAIDS.remove(user.id)
-        await ex.edit(f"[{user.first_name}](tg://user?id={user.id}) DeActivated ReplyRaid!")
+        await ex.edit(f"<blockquote>[{user.first_name}](tg://user?id={user.id})</blockquote>\n BrokenHeart</blockquote>")
     except Exception as e:
         await ex.edit(f"**ERROR:** `{e}`")
         return
@@ -162,7 +162,7 @@ async def gmute_user(client: Client, message: Message):
 add_command_help(
     "replyraid",
     [
-        [".replyraid", "Reply To User\n To Raid on Someone."],
-        [".dreplyraid", "To Disable ReplyRaid."],
+        [".love", "Reply To User\n To Raid on Someone."],
+        [".breakup", "To Disable ReplyRaid."],
     ],
 )
