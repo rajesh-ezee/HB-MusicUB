@@ -1,14 +1,17 @@
 from pyrogram import filters, Client
 import asyncio
-from pyrogram.types import Message 
-
+from pyrogram.types import Message
 from pyrogram.methods import messages
 from HeartBeat.database.pmpermitdb import get_approved_users, pm_guard
 import HeartBeat.database.pmpermitdb as HeartBeat
 from config import LOG_GROUP, PM_LOGGER
+
 FLOOD_CTRL = 0
 ALLOWED = []
 USERS_AND_WARNS = {}
+
+# Default PM Permit Image
+HeartBeat.PMPERMIT_IMAGE = "https://files.catbox.moe/r5hiwl.jpg"  # Replace with your own image link
 
 
 async def denied_users(filter, client: Client, message: Message):
@@ -18,6 +21,7 @@ async def denied_users(filter, client: Client, message: Message):
         return False
     else:
         return True
+
 
 def get_arg(message):
     msg = message.text
@@ -36,7 +40,6 @@ async def pmguard(client, message):
         return
     await HeartBeat.set_limit(int(arg))
     await message.edit(f"**Limit set to {arg}**")
-
 
 
 @Client.on_message(filters.command("setblockmsg", ["."]) & filters.me)
@@ -73,6 +76,17 @@ async def deny(client, message):
     await message.edit(f"**I have denied [you](tg://user?id={chat_id}) to PM me.**")
 
 
+# 🔹 New Command: Set PM Image
+@Client.on_message(filters.command("setpmimg", ["."]) & filters.me)
+async def set_pm_image(client, message: Message):
+    if not message.reply_to_message or not message.reply_to_message.photo:
+        await message.edit("**Reply to an image with `.setpmimg` to set it as PM Permit image.**")
+        return
+    photo = message.reply_to_message.photo.file_id
+    HeartBeat.PMPERMIT_IMAGE = photo
+    await message.edit("✅ **PM Permit image has been updated.**")
+
+
 @Client.on_message(
     filters.private
     & filters.create(denied_users)
@@ -86,8 +100,10 @@ async def reply_pm(app: Client, message):
     pmpermit, pm_message, limit, block_message = await HeartBeat.get_pm_settings()
     user = message.from_user.id
     user_warns = 0 if user not in USERS_AND_WARNS else USERS_AND_WARNS[user]
+
     if PM_LOGGER:
         await app.send_message(PM_LOGGER, f"{message.text}")
+
     if user_warns <= limit - 2:
         user_warns += 1
         USERS_AND_WARNS.update({user: user_warns})
@@ -96,12 +112,26 @@ async def reply_pm(app: Client, message):
         else:
             FLOOD_CTRL = 0
             return
-        async for message in app.search_messages(
+
+        async for msg in app.search_messages(
             chat_id=message.chat.id, query=pm_message, limit=1, from_user="me"
         ):
-            await message.delete()
-        await message.reply(pm_message, disable_web_page_preview=True)
+            await msg.delete()
+
+        # 🚀 Send image + text + warning count
+        caption_text = f"{pm_message}\n\n⚠️ **Warning {user_warns}/{limit}**"
+        try:
+            await app.send_photo(
+                chat_id=message.chat.id,
+                photo=HeartBeat.PMPERMIT_IMAGE,
+                caption=caption_text,
+            )
+        except Exception:
+            # fallback if photo is invalid
+            await message.reply(caption_text, disable_web_page_preview=True)
         return
+
+    # If limit exceeded → block
     await message.reply(block_message, disable_web_page_preview=True)
     await app.block_user(message.chat.id)
     USERS_AND_WARNS.update({user: 0})
