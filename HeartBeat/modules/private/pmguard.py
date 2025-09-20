@@ -66,7 +66,7 @@ async def allow(client, message):
     USERS_AND_WARNS.update({chat_id: 0})
 
 
-@Client.on_message(filters.command(["deny", "dap", "disapprove", "dapp"], ["."]) & filters.me & filters.private)
+@Client.on_message(filters.command(["deny", "dap", "disapprove", "da"], ["."]) & filters.me & filters.private)
 async def deny(client, message):
     chat_id = message.chat.id
     await HeartBeat.deny_user(chat_id)
