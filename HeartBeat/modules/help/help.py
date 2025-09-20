@@ -17,7 +17,7 @@ async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
     )
     return await xyz(*args, **kwargs)
 
-@Client.on_message(filters.command(["help", "helpme"], ".") & filters.me)
+@Client.on_message(filters.command(["hlp", "helpme"], ".") & filters.me)
 async def module_help(client: Client, message: Message):
     cmd = message.command
     help_arg = ""
@@ -25,7 +25,7 @@ async def module_help(client: Client, message: Message):
     if len(cmd) > 1:
         help_arg = " ".join(cmd[1:])
     elif not message.reply_to_message and len(cmd) == 1:
-        await message.edit("ʜʙ-ꜰᴀᴍ ᴘᴀᴘᴀ ᴄᴏᴍɪɴɢ..😈")
+        await message.edit("ʜʙ-ꜰᴀᴍ ᴄᴏᴍɪɴɢ..😈")
         try:
             nice = await client.get_inline_bot_results(bot=bot_username, query="helper")
             await asyncio.gather(
@@ -38,13 +38,13 @@ async def module_help(client: Client, message: Message):
             print(f"{e}")
             ac = PrettyTable()
             ac.header = False
-            ac.title = "😈𝗚𝗛𝗢𝗦𝗧😈"
+            ac.title = "💥𝙃𝙀𝘼𝙍𝙏-𝘽𝙀𝘼𝙏💥"
             ac.align = "l"
             for x in split_list(sorted(CMD_HELP.keys()), 2):
                 ac.add_row([x[0], x[1] if len(x) >= 2 else None])
             xx = await client.send_message(
                 message.chat.id,
-                f"```{str(ac)}```\n• @HeartBeat_Fam × @HeartBeat_Offi •",
+                f"```{str(ac)}```\n<blockquote>• @HeartBeat_Fam × @HeartBeat_Offi •</blockquote>",
                 reply_to_message_id=ReplyCheck(message),
             )
             await xx.reply(
@@ -55,10 +55,10 @@ async def module_help(client: Client, message: Message):
     if help_arg:
         if help_arg in CMD_HELP:
             commands: dict = CMD_HELP[help_arg]
-            this_command = f"──「 **Help For {str(help_arg).upper()}** 」──\n\n"
+            this_command = f"<blockquote>──「 **Help For {str(help_arg).upper()}** 」──</blockquote>\n"
             for x in commands:
-                this_command += f"  •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`\n\n"
-            this_command += "© @HeartBeat_Fam"
+                this_command += f"<blockquote> •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`</blockquote>\n"
+            this_command += "<blockquote>© @HeartBeat_Fam</blockquote>"
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.MARKDOWN
             )
@@ -69,7 +69,7 @@ async def module_help(client: Client, message: Message):
             )
 
 
-@Client.on_message(filters.command(["plugins", "modules"], ".") & filters.me)
+@Client.on_message(filters.command(["plugins", "modules", "help"], ".") & filters.me)
 async def module_helper(client: Client, message: Message):
     cmd = message.command
     help_arg = ""
@@ -80,7 +80,7 @@ async def module_helper(client: Client, message: Message):
     elif not message.reply_to_message and len(cmd) == 1:
         ac = PrettyTable()
         ac.header = False
-        ac.title = "HeartBeat-UserBot Plugins"
+        ac.title = "𝐇ᴇᴀʀᴛ𝐁ᴇᴀᴛ-𝐏ʟᴜɢɪɴƨ"
         ac.align = "l"
         for x in split_list(sorted(CMD_HELP.keys()), 2):
             ac.add_row([x[0], x[1] if len(x) >= 2 else None])
@@ -94,10 +94,10 @@ async def module_helper(client: Client, message: Message):
     if help_arg:
         if help_arg in CMD_HELP:
             commands: dict = CMD_HELP[help_arg]
-            this_command = f"──「 **Help For {str(help_arg).upper()}** 」──\n\n"
+            this_command = f"<blockquote>──「 **Help For {str(help_arg).upper()}** 」──</blockquote>\n"
             for x in commands:
-                this_command += f"  •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`\n\n"
-            this_command += "© @HeartBeat_Fam"
+                this_command += f"<blockquote> •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`</blockquote>\n"
+            this_command += "<blockquote>© @HeartBeat_Fam</blockquote>"
             await edit_or_reply(
                 message, this_command, parse_mode=enums.ParseMode.MARKDOWN
             )
