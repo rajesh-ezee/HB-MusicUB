@@ -119,7 +119,7 @@ async def reply_pm(app: Client, message):
             await msg.delete()
 
         # 🚀 Send image + text + warning count
-        caption_text = f"{pm_message}\n\n⚠️ **Warning {user_warns}/{limit}**"
+        caption_text = f"{pm_message}\n\n⚠️ **𝐖ʌʀиɪиɢ {user_warns}/{limit}**"
         try:
             await app.send_photo(
                 chat_id=message.chat.id,
