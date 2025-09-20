@@ -95,7 +95,7 @@ async def afk_set(bot: Client, message: Message):
     await message.delete()
 
 
-@Client.on_message(filters.command("afk", "!") & filters.me, group=3)
+@Client.on_message(filters.command("dafk", ".") & filters.me, group=3)
 async def afk_unset(bot: Client, message: Message):
     global AFK, AFK_TIME, AFK_REASON, USERS, GROUPS
 
@@ -138,6 +138,6 @@ add_command_help(
     "afk",
     [
         [".afk", "Activates AFK mode with reason as anything after .afk\nUsage: ```.afk <reason>```"],
-        ["!afk", "Deactivates AFK mode."],
+        [".dafk", "Deactivates AFK mode."],
     ],
 )
