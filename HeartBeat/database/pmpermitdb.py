@@ -3,9 +3,7 @@ import asyncio
 
 collection = cli["HeartBeat"]["pmpermit"]
 
-PMPERMIT_MESSAGE = (
-   "**<blockquote>☆ . * ● ¸ . ✦ .★　° :. ★ * • ○ ° ★<blockquote>\n\n<blockquote>ʜᴇʏ ɪ'ᴍ 𝐇𝐞𝐚𝐫𝐭𝐁𝐞𝐚𝐭-✗-𝐁𝐨𝐭</blockquote>\n\n<blockquote>☆ . * ● ¸ . ✦ .★　° :. ★ * • ○ ° ★</blockquote>\n\n<blockquote>➽─────────────────❥</blockquote>\n\n<blockquote>💕 ᴛᴀɢ ᴍʏ ʟᴏᴠᴇ 🦋\n https://t.me/HeartBeat_Fam</blockquote>\n\n<blockquote>➽─────────────────❥</blockquote>\n\n<blockquote>😈 ᴏᴛʜᴇʀᴡɪꜱᴇ, ᴡᴀɪᴛ ᴜɴᴛɪʟ ᴍʏ ʙᴏꜱꜱ ᴄᴏᴍᴇꜱ, ᴅᴏɴ'ᴛ ꜱᴘᴀᴍ ᴍᴇ..\nʏᴏᴜ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏʙʟᴏᴄᴋ (ᴜᴘᴛᴏ 3 ᴍᴇꜱꜱᴀɢᴇꜱ)</blockquote>\n\n<blockquote>☆ . * ● ¸ . ✦ .★　° :. ★ * • ○ ° ★</blockquote>**"
-)
+PMPERMIT_MESSAGE = "**<blockquote>☆ . * ● ¸ . ✦ .★　° :. ★ * • ○ ° ★<blockquote>\n<blockquote>ʜᴇʏ ɪ'ᴍ 𝐇𝐞𝐚𝐫𝐭𝐁𝐞𝐚𝐭-✗-𝐁𝐨𝐭</blockquote>\n<blockquote>☆ . * ● ¸ . ✦ .★　° :. ★ * • ○ ° ★</blockquote>\n<blockquote>➽─────────────────❥</blockquote>\n<blockquote>💕 ᴛᴀɢ ᴍʏ ʟᴏᴠᴇ 🦋\n https://t.me/HeartBeat_Fam</blockquote>\n<blockquote>➽─────────────────❥</blockquote>\n<blockquote>😈 ᴏᴛʜᴇʀᴡɪꜱᴇ, ᴡᴀɪᴛ ᴜɴᴛɪʟ ᴍʏ ʙᴏꜱꜱ ᴄᴏᴍᴇꜱ, ᴅᴏɴ'ᴛ ꜱᴘᴀᴍ ᴍᴇ..\nʏᴏᴜ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏʙʟᴏᴄᴋ (ᴜᴘᴛᴏ 3 ᴍᴇꜱꜱᴀɢᴇꜱ)</blockquote>\n<blockquote>☆ . * ● ¸ . ✦ .★　° :. ★ * • ○ ° ★</blockquote>**"
 
 BLOCKED = "**<blockquote>ʙᴇᴇᴘ ʙᴏᴏᴘ ꜰᴏᴜɴᴅᴇᴅ ᴀ ꜱᴘᴀᴍᴍᴇʀ!, ʙʟᴏᴄᴋᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ!</blockquote>**"
 
