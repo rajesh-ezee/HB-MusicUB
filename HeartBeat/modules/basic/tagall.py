@@ -277,32 +277,30 @@ async def mentionall(client: Client, message: Message):
     direp = message.reply_to_message
     args = get_arg(message)
 
-    # If no reply and no text, choose a random quote
+    # If no reply and no text → tagging will use random quotes per user
+    use_random_quotes = False
     if not direp and not args:
-        args = random.choice(RANDOM_QUOTES)
-
-    if not direp and not args:
-        return await message.edit("**Send me a message or reply to a message!**")
+        use_random_quotes = True
 
     await message.delete()
     spam_chats.append(chat_id)
-    usrnum = 0
-    usrtxt = ""
 
     async for usr in client.get_chat_members(chat_id):
         if chat_id not in spam_chats:
             break
-        usrnum += 1
-        usrtxt += f"[{usr.user.first_name}](tg://user?id={usr.user.id}), "
-        if usrnum == 1:
-            if args:
-                txt = f"<blockquote>{args}</blockquote>\n<blockquote>✰| {usrtxt}</blockquote>"
-                await client.send_message(chat_id, txt)
-            elif direp:
-                await direp.reply(usrtxt)
-            await sleep(2)
-            usrnum = 0
-            usrtxt = ""
+
+        mention = f"[{usr.user.first_name}](tg://user?id={usr.user.id})"
+
+        if use_random_quotes:
+            text = f"<blockquote>{random.choice(RANDOM_QUOTES)}</blockquote>\n<blockquote>✰| {mention}</blockquote>"
+            await client.send_message(chat_id, text)
+        elif args:
+            text = f"<blockquote>{args}</blockquote>\n<blockquote>✰| {mention}</blockquote>"
+            await client.send_message(chat_id, text)
+        elif direp:
+            await direp.reply(mention)
+
+        await sleep(2)
 
     try:
         spam_chats.remove(chat_id)
@@ -327,7 +325,7 @@ add_command_help(
     [
         [
             "tagall [text/reply ke chat]",
-            "Tag all the members one by one. If no text/reply is given, a random quote will be used.",
+            "Tag all the members one by one. If no text/reply is given, each user will get a random quote.",
         ],
         [
             "cancel",
