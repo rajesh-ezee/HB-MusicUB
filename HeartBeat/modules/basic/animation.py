@@ -486,26 +486,26 @@ async def ngefuck(client: Client, message: Message):
 
 @Client.on_message(filters.command("hack", ".") & filters.me)
 async def hak(client: Client, message: Message):
-    await message.edit_text("Looking for WhatsApp databases in targeted person...")
+    await message.edit_text("Looking for Telegram databases in targeted person...")
     await asyncio.sleep(2)
     await message.edit_text(
         " User online: True\nTelegram access: True\nRead Storage: True "
     )
     await asyncio.sleep(2)
     await message.edit_text(
-        "Hacking... 0%\n[░░░░░░░░░░░░░░░░░░░░]\n`Looking for WhatsApp...`\nETA: 0m, 20s"
+        "Hacking... 0%\n[░░░░░░░░░░░░░░░░░░░░]\n`Looking for Tekegram...`\nETA: 0m, 20s"
     )
     await asyncio.sleep(2)
     await message.edit_text(
-        "Hacking... 11.07%\n[██░░░░░░░░░░░░░░░░░░]\n`Looking for WhatsApp...`\nETA: 0m, 18s"
+        "Hacking... 11.07%\n[██░░░░░░░░░░░░░░░░░░]\n`Looking for Telegram...`\nETA: 0m, 18s"
     )
     await asyncio.sleep(2)
     await message.edit_text(
-        "Hacking... 20.63%\n[███░░░░░░░░░░░░░░░░░]\n`Found folder C:/WhatsApp`\nETA: 0m, 16s"
+        "Hacking... 20.63%\n[███░░░░░░░░░░░░░░░░░]\n`Found folder C:/Telegram`\nETA: 0m, 16s"
     )
     await asyncio.sleep(2)
     await message.edit_text(
-        "Hacking... 34.42%\n[█████░░░░░░░░░░░░░░░]\n`Found folder C:/WhatsApp`\nETA: 0m, 14s"
+        "Hacking... 34.42%\n[█████░░░░░░░░░░░░░░░]\n`Found folder C:/Telegram`\nETA: 0m, 14s"
     )
     await asyncio.sleep(2)
     await message.edit_text(
@@ -539,7 +539,7 @@ async def hak(client: Client, message: Message):
     await message.edit_text("Hacking complete!\nUploading file...")
     await asyncio.sleep(2)
     await message.edit_text(
-        "Targeted Account Hacked...!\n\n ✅ File has been successfully uploaded to my server.\nHeartBeat Database:\n`./DOWNLOADS/msgstore.db.crypt12` "
+        "𝗧𝗮𝗿𝗴𝗲𝘁 𝗔𝗰𝗰𝗼𝘂𝗻𝘁 𝗛𝗮𝗰𝗸𝗲𝗱...!\n\n🕹️ ғɪʟᴇ ʜᴀ𝗌 ʙᴇᴇɴ 𝗌ᴜᴄᴄᴇ𝗌𝗌ғᴜʟʟʏ ᴜᴘʟᴏᴀᴅᴇᴅ ᴛᴏ ᴍʏ 𝐇𝐁 𝗌ᴇʀᴠᴇʀ. \n\n ғɪʟᴇ ᴘᴀᴛʜ: \n ./DOWNLOADS/msgstore.db.crypt12."
     )
 
 
