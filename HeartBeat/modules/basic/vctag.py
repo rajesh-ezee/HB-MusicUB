@@ -9,7 +9,7 @@ from HeartBeat.modules.help import add_command_help
 spam_chats = []
 
 # Some random quotes pool
- RANDOM_QUOTES = [
+RANDOM_QUOTES = [
 "Hey 😎 VC-ku vara ready-aa?",
 "Eppo 📱 join pannura VC-ku?",
 "Coffe 🍵 kudichitu VC-la join pannala?",
