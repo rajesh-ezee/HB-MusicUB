@@ -76,15 +76,25 @@ async def deny(client, message):
     await message.edit(f"**I have denied [you](tg://user?id={chat_id}) to PM me.**")
 
 
-# 🔹 New Command: Set PM Image
+# 🔹 Set PM Image
 @Client.on_message(filters.command("xsetpmimg", ["."]) & filters.me)
 async def set_pm_image(client, message: Message):
     if not message.reply_to_message or not message.reply_to_message.photo:
-        await message.edit("**Reply to an image with .setpmimg to set it as PM Permit image.**")
+        await message.edit("**Reply to an image with .xsetpmimg to set it as PM Permit image.**")
         return
     photo = message.reply_to_message.photo.file_id
     HeartBeat.PMPERMIT_IMAGE = photo
     await message.edit("✅ **PM Permit image has been updated.**")
+
+
+# 🔹 Reset All
+@Client.on_message(filters.command("resetall", ["."]) & filters.me)
+async def reset_all_cmd(client, message: Message):
+    await HeartBeat.reset_all()
+    global USERS_AND_WARNS
+    USERS_AND_WARNS.clear()
+    HeartBeat.PMPERMIT_IMAGE = "https://files.catbox.moe/r5hiwl.jpg"  # reset default image
+    await message.edit("✅ **All PM settings have been reset to default.**")
 
 
 @Client.on_message(
@@ -118,27 +128,23 @@ async def reply_pm(app: Client, message):
         ):
             await msg.delete()
 
-        # 🚀 Send image + text + warning count
         caption_text = (
             f"{pm_message}\n\n"
-            f"⚠️ **Warning {user_warns}/{limit}**"
+            f"⚠️ **𝐖ᴀʀɴɪɴɢ {user_warns}/{limit}**"
         )
         try:
             await app.send_photo(
                 chat_id=message.chat.id,
                 photo=HeartBeat.PMPERMIT_IMAGE,
                 caption=caption_text,
-                #parse_mode="html",   # 👈 Force HTML parse for blockquote
             )
-        except Exception as e:
+        except Exception:
             await message.reply(
                 caption_text,
                 disable_web_page_preview=True,
-                #parse_mode="html"
             )
         return
 
-    # If limit exceeded → block
     await message.reply(block_message, disable_web_page_preview=True)
     await app.block_user(message.chat.id)
     USERS_AND_WARNS.update({user: 0})
