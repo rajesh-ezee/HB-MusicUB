@@ -151,7 +151,7 @@ async def gmtag(client: Client, message: Message):
 @Client.on_message(filters.command("cancel", ".") & filters.me)
 async def cancel_spam(client: Client, message: Message):
     if message.chat.id not in spam_chats:
-        return await message.edit("**It seems there is no gmtag here.**")
+        return await message.edit("**It seems there is no tamtag here.**")
     else:
         try:
             spam_chats.remove(message.chat.id)
