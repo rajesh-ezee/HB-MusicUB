@@ -1,13 +1,14 @@
 from asyncio import sleep
+import random
+
 from pyrogram import Client, filters
 from pyrogram.types import Message
-import random
 
 from HeartBeat.modules.help import add_command_help
 
 spam_chats = []
 
-# Pool of good morning quotes
+# Some random quotes pool
 RANDOM_QUOTES = [
 "🌙 Good night! May your dreams be filled with happiness and love. 🌟",
 "💤 Sleep well and wake up refreshed for a brand new day! 🌌",
@@ -114,42 +115,62 @@ RANDOM_QUOTES = [
 "🌙 Good night! Let the night wrap you in comfort and peace. 💖"
 ]
 
+def get_arg(message: Message):
+    msg = message.text
+    msg = msg.replace(" ", "", 1) if msg[1] == " " else msg
+    split = msg[1:].replace("\n", " \n").split(" ")
+    if " ".join(split[1:]).strip() == "":
+        return ""
+    return " ".join(split[1:])
+
 
 @Client.on_message(filters.command("gntag", ".") & filters.me)
-async def gmtag(client: Client, message: Message):
-    chat_id = message.chat.id
-    await message.delete()
-    spam_chats.append(chat_id)
-    
-    async for member in client.get_chat_members(chat_id):
-        if chat_id not in spam_chats:
-            break
-        
-        user = member.user
-        if user.is_bot:  # skip bots
-            continue
-        
-        quote = random.choice(RANDOM_QUOTES)  # random quote per user
-        txt = f"<blockquote>{quote}</blockquote>\n<blockquote>✰| [{user.first_name}](tg://user?id={user.id})</blockquote>"
-        
-        await client.send_message(chat_id, txt)
-        await sleep(2)  # avoid flood
-    
-    try:
-        spam_chats.remove(chat_id)
-    except:
-        pass
+async def mentionall(client: Client, message: Message):
+    chat_id = message.chat.id
+    direp = message.reply_to_message
+    args = get_arg(message)
+
+    # If no reply and no text → tagging will use random quotes per user
+    use_random_quotes = False
+    if not direp and not args:
+        use_random_quotes = True
+
+    await message.delete()
+    spam_chats.append(chat_id)
+
+    async for usr in client.get_chat_members(chat_id):
+        if chat_id not in spam_chats:
+            break
+
+        mention = f"[{usr.user.first_name}](tg://user?id={usr.user.id})"
+
+        if use_random_quotes:
+            text = f"<blockquote>{random.choice(RANDOM_QUOTES)}</blockquote>\n<blockquote>✰| {mention}</blockquote>"
+            await client.send_message(chat_id, text)
+        elif args:
+            text = f"<blockquote>{args}</blockquote>\n<blockquote>✰| {mention}</blockquote>"
+            await client.send_message(chat_id, text)
+        elif direp:
+            await direp.reply(mention)
+
+        await sleep(2)
+
+    try:
+        spam_chats.remove(chat_id)
+    except:
+        pass
+
 
 @Client.on_message(filters.command("cancel", ".") & filters.me)
 async def cancel_spam(client: Client, message: Message):
-    if message.chat.id not in spam_chats:
-        return await message.edit("**It seems there is no gntag here.**")
-    else:
-        try:
-            spam_chats.remove(message.chat.id)
-        except:
-            pass
-        return await message.edit("**Cancelled.**")
+    if message.chat.id not in spam_chats:
+        return await message.edit("**It seems there is no goodnight tag here.**")
+    else:
+        try:
+            spam_chats.remove(message.chat.id)
+        except:
+            pass
+        return await message.edit("**Cancelled.**")
 
 
 add_command_help(
@@ -157,11 +178,11 @@ add_command_help(
     [
         [
             "gntag",
-            "Tag all the members with a random good night quote",
+            "Tag all the members one by one .if each user will get a random quote.",
         ],
         [
             "cancel",
-            "Stop the gntag spam",
+            "to stop .tagall",
         ],
     ],
 )
