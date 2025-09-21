@@ -4,8 +4,7 @@ import asyncio
 collection = cli["HeartBeat"]["pmpermit"]
 
 # Default PM Permit message
-PMPERMIT_MESSAGE = """
-<blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>
+PMPERMIT_MESSAGE = """**<blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>
 <blockquote>ʜᴇʏ, ɪ'ᴍ 𝐇𝐞𝐚𝐫𝐭𝐁𝐞𝐚𝐭-✗-𝐁𝐨𝐭</blockquote>
 <blockquote>➽───────────────❥</blockquote>
 <blockquote>💕 ᴛᴀɢ ᴍʏ ʟᴏᴠᴇ 🦋  
@@ -13,8 +12,7 @@ PMPERMIT_MESSAGE = """
 <blockquote>➽───────────────❥</blockquote>
 <blockquote>😈 ᴏᴛʜᴇʀᴡɪꜱᴇ, ᴡᴀɪᴛ ᴜɴᴛɪʟ ᴍʏ ʙᴏꜱꜱ ᴄᴏᴍᴇꜱ.  
 🚫 ᴅᴏɴ'ᴛ ꜱᴘᴀᴍ ᴍᴇ – ʏᴏᴜ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏ-ʙʟᴏᴄᴋᴇᴅ (ᴜᴘ ᴛᴏ 3 ᴡᴀʀɴɪɴɢꜱ).</blockquote>
-<blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>
-"""
+<blockquote>☆ . * ● ¸ . ✦ .★° :. ★ * • ○ ° ★</blockquote>"""
 
 # Default block message
 BLOCKED = "**<blockquote>ʙᴇᴇᴘ ʙᴏᴏᴘ ꜰᴏᴜɴᴅᴇᴅ ᴀ ꜱᴘᴀᴍᴍᴇʀ!, ʙʟᴏᴄᴋᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ!</blockquote>**"
