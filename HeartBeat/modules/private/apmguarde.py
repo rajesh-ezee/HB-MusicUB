@@ -4,9 +4,7 @@ from HeartBeat import SUDO_USER
 from HeartBeat.modules.help import *
 from pyrogram.methods import messages
 from .pmguard import get_arg, denied_users
-
 import HeartBeat.database.pmpermitdb as HeartBeat
-
 
 
 @Client.on_message(filters.command("pmguard", ["."]) & filters.me)
@@ -21,6 +19,8 @@ async def pmguard(client, message):
     if arg == "on":
         await HeartBeat.set_pm(True)
         await message.edit("**PM Guard Activated**")
+
+
 @Client.on_message(filters.command("xsetpmmsg", ["."]) & filters.me)
 async def setpmmsg(client, message):
     arg = get_arg(message)
@@ -41,8 +41,10 @@ add_command_help(
         [".pmguard [on or off]", " -> Activates or deactivates anti-pm."],
         [".setpmmsg [message or default]", " -> Sets a custom anti-pm message."],
         [".setblockmsg [message or default]", "-> Sets custom block message."],
-        [".setlimit [value]", " -> This one sets a max. message limit for unwanted PMs and when they go beyond it, bamm!."],
-        [".allow", " -> Allows a user to PM you."],
-        [".deny", " -> Denies a user to PM you."],
+        [".setlimit [value]", " -> Sets max warnings before block."],
+        [".setpmimg (reply to photo)", " -> Sets custom PM image."],
+        [".a", " -> Allows a user to PM you."],
+        [".da", " -> Denies a user to PM you."],
+        [".resetall", " -> Resets everything to default (messages, image, limit, approvals)."],
     ],
 )
