@@ -128,13 +128,13 @@ async def reply_pm(app: Client, message):
                 chat_id=message.chat.id,
                 photo=HeartBeat.PMPERMIT_IMAGE,
                 caption=caption_text,
-                parse_mode="html",   # 👈 Force HTML parse for blockquote
+                #parse_mode="html",   # 👈 Force HTML parse for blockquote
             )
         except Exception as e:
             await message.reply(
                 caption_text,
                 disable_web_page_preview=True,
-                parse_mode="html"
+                #parse_mode="html"
             )
         return
 
