@@ -108,43 +108,41 @@ RANDOM_QUOTES = [
 "Breakfast eat pannitu 🥐, VC-ku vara ready-aa?"
 ]
 
-
 @Client.on_message(filters.command("vctag", ".") & filters.me)
 async def gmtag(client: Client, message: Message):
-    chat_id = message.chat.id
-    await message.delete()
-    spam_chats.append(chat_id)
-    usrnum = 0
-    usrtxt = ""
-    # Pick a random quote for this spam
-    quote = random.choice(RANDOM_QUOTES)
-    async for usr in client.get_chat_members(chat_id):
-        if chat_id not in spam_chats:
-            break
-        usrnum += 1
-        usrtxt += f"[{usr.user.first_name}](tg://user?id={usr.user.id}), "
-        if usrnum == 1:
-            txt = f"<blockquote>{quote}</blockquote>\n<blockquote>✰| {usrtxt}</blockquote>"
-            await client.send_message(chat_id, txt)
-            await sleep(2)
-            usrnum = 0
-            usrtxt = ""
-    try:
-        spam_chats.remove(chat_id)
-    except:
-        pass
-
+    chat_id = message.chat.id
+    await message.delete()
+    spam_chats.append(chat_id)
+    
+    async for member in client.get_chat_members(chat_id):
+        if chat_id not in spam_chats:
+            break
+        
+        user = member.user
+        if user.is_bot:  # skip bots
+            continue
+        
+        quote = random.choice(RANDOM_QUOTES)  # random quote per user
+        txt = f"<blockquote>{quote}</blockquote>\n<blockquote>✰| [{user.first_name}](tg://user?id={user.id})</blockquote>"
+        
+        await client.send_message(chat_id, txt)
+        await sleep(2)  # avoid flood
+    
+    try:
+        spam_chats.remove(chat_id)
+    except:
+        pass
 
 @Client.on_message(filters.command("cancel", ".") & filters.me)
 async def cancel_spam(client: Client, message: Message):
-    if message.chat.id not in spam_chats:
-        return await message.edit("**It seems there is no vctag here.**")
-    else:
-        try:
-            spam_chats.remove(message.chat.id)
-        except:
-            pass
-        return await message.edit("**Cancelled.**")
+    if message.chat.id not in spam_chats:
+        return await message.edit("**It seems there is no vctag here.**")
+    else:
+        try:
+            spam_chats.remove(message.chat.id)
+        except:
+            pass
+        return await message.edit("**Cancelled.**")
 
 
 add_command_help(
