@@ -35,7 +35,6 @@ async def set_pm(value: bool):
     if r:
         await collection.update_one({"_id": 1}, {"$set": {"pmpermit": value}})
     else:
-        # 🚀 Default ON
         await collection.insert_one({"_id": 1, "pmpermit": True})
     if not r2:
         await collection.insert_one(doc2)
@@ -101,3 +100,24 @@ async def pm_guard():
         return False
     else:
         return True
+
+
+# Reset all to default
+async def reset_all():
+    await collection.update_one(
+        {"_id": 1},
+        {
+            "$set": {
+                "pmpermit": True,
+                "pmpermit_message": PMPERMIT_MESSAGE,
+                "block_message": BLOCKED,
+                "limit": LIMIT,
+            }
+        },
+        upsert=True,
+    )
+    await collection.update_one(
+        {"_id": "Approved"},
+        {"$set": {"users": []}},
+        upsert=True,
+    )
