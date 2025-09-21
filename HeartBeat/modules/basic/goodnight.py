@@ -127,7 +127,7 @@ async def gmtag(client: Client, message: Message):
     async for usr in client.get_chat_members(chat_id):
         if chat_id not in spam_chats:
             break
-        usrnum += 5
+        usrnum += 1
         usrtxt += f"[{usr.user.first_name}](tg://user?id={usr.user.id}), "
         if usrnum == 1:
             txt = f"<blockquote>{quote}</blockquote>\n<blockquote>✰| {usrtxt}</blockquote>"
