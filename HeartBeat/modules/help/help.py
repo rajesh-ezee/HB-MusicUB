@@ -1,6 +1,5 @@
 import asyncio
 
-from prettytable import PrettyTable
 from pyrogram import Client, enums, filters
 from pyrogram.types import Message
 
@@ -16,6 +15,7 @@ async def edit_or_reply(message: Message, *args, **kwargs) -> Message:
         else (message.reply_to_message or message).reply_text
     )
     return await xyz(*args, **kwargs)
+
 
 @Client.on_message(filters.command(["hlp", "helpme"], ".") & filters.me)
 async def module_help(client: Client, message: Message):
@@ -36,36 +36,44 @@ async def module_help(client: Client, message: Message):
             )
         except BaseException as e:
             print(f"{e}")
-            ac = PrettyTable()
-            ac.header = False
-            ac.title = "💥𝙃𝙀𝘼𝙍𝙏-𝘽𝙀𝘼𝙏💥"
-            ac.align = "l"
-            for x in split_list(sorted(CMD_HELP.keys()), 2):
-                ac.add_row([x[0], x[1] if len(x) >= 2 else None])
+            # Build clean HTML list of modules
+            modules = sorted(CMD_HELP.keys())
+            rows = ""
+            for pair in split_list(modules, 2):
+                left = pair[0]
+                right = pair[1] if len(pair) > 1 else ""
+                rows += f"<blockquote>• <b>{left}</b>{' — <b>'+right+'</b>' if right else ''}</blockquote>\n"
+
             xx = await client.send_message(
                 message.chat.id,
-                f"```{str(ac)}```\n<blockquote>• @HeartBeat_Fam × @HeartBeat_Offi •</blockquote>",
+                f"<b>💥 HEART-BEAT MODULES 💥</b>\n\n{rows}\n<blockquote>• @HeartBeat_Fam × @HeartBeat_Offi •</blockquote>",
                 reply_to_message_id=ReplyCheck(message),
+                parse_mode=enums.ParseMode.HTML
             )
             await xx.reply(
-                f"**Usage:** `.help broadcast` **To View Module Information**"
+                f"<b>Usage:</b> <code>.help broadcast</code> <b>To View Module Information</b>",
+                parse_mode=enums.ParseMode.HTML
             )
             return
 
     if help_arg:
         if help_arg in CMD_HELP:
             commands: dict = CMD_HELP[help_arg]
-            this_command = f"<blockquote>──「 **Help For {str(help_arg).upper()}** 」──</blockquote>\n"
+            this_command = f"<blockquote>──「 <b>Help For {str(help_arg).upper()}</b> 」──</blockquote>\n"
             for x in commands:
-                this_command += f"<blockquote> •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`</blockquote>\n"
+                this_command += (
+                    f"<blockquote>• <b>Command:</b> <code>.{str(x)}</code><br>"
+                    f"• <b>Function:</b> <code>{str(commands[x])}</code></blockquote>\n"
+                )
             this_command += "<blockquote>© @HeartBeat_Fam</blockquote>"
             await edit_or_reply(
-                message, this_command, parse_mode=enums.ParseMode.MARKDOWN
+                message, this_command, parse_mode=enums.ParseMode.HTML
             )
         else:
             await edit_or_reply(
                 message,
-                f"`{help_arg}` **Not a Valid Module Name.**",
+                f"<code>{help_arg}</code> <b>Not a Valid Module Name.</b>",
+                parse_mode=enums.ParseMode.HTML
             )
 
 
@@ -78,33 +86,41 @@ async def module_helper(client: Client, message: Message):
     elif message.reply_to_message and len(cmd) == 1:
         help_arg = message.reply_to_message.text
     elif not message.reply_to_message and len(cmd) == 1:
-        ac = PrettyTable()
-        ac.header = False
-        ac.title = "𝐇ᴇᴀʀᴛ𝐁ᴇᴀᴛ-𝐏ʟᴜɢɪɴƨ"
-        ac.align = "l"
-        for x in split_list(sorted(CMD_HELP.keys()), 2):
-            ac.add_row([x[0], x[1] if len(x) >= 2 else None])
+        modules = sorted(CMD_HELP.keys())
+        rows = ""
+        for pair in split_list(modules, 2):
+            left = pair[0]
+            right = pair[1] if len(pair) > 1 else ""
+            rows += f"<blockquote>• <b>{left}</b>{' — <b>'+right+'</b>' if right else ''}</blockquote>\n"
+
         await edit_or_reply(
-            message, f"```{str(ac)}```\n• @HeartBeat_Fam × @HeartBeat_Offi •"
+            message,
+            f"<b>𝐇ᴇᴀʀᴛ𝐁ᴇᴀᴛ 𝐏ʟᴜɢɪɴ𝐬</b>\n\n{rows}\n<blockquote>• @HeartBeat_Fam × @HeartBeat_Offi •</blockquote>",
+            parse_mode=enums.ParseMode.HTML
         )
         await message.reply(
-            f"**Usage**:`.help broadcast` **To View Module details**"
+            f"<b>Usage:</b> <code>.help broadcast</code> <b>To View Module details</b>",
+            parse_mode=enums.ParseMode.HTML
         )
 
     if help_arg:
         if help_arg in CMD_HELP:
             commands: dict = CMD_HELP[help_arg]
-            this_command = f"<blockquote>──「 **Help For {str(help_arg).upper()}** 」──</blockquote>\n"
+            this_command = f"<blockquote>──「 <b>Help For {str(help_arg).upper()}</b> 」──</blockquote>\n"
             for x in commands:
-                this_command += f"<blockquote> •  **Command:** `.{str(x)}`\n  •  **Function:** `{str(commands[x])}`</blockquote>\n"
+                this_command += (
+                    f"<blockquote>• <b>Command:</b> <code>.{str(x)}</code><br>"
+                    f"• <b>Function:</b> <code>{str(commands[x])}</code></blockquote>\n"
+                )
             this_command += "<blockquote>© @HeartBeat_Fam</blockquote>"
             await edit_or_reply(
-                message, this_command, parse_mode=enums.ParseMode.MARKDOWN
+                message, this_command, parse_mode=enums.ParseMode.HTML
             )
         else:
             await edit_or_reply(
                 message,
-                f"`{help_arg}` **Not a Valid Module Name.**",
+                f"<code>{help_arg}</code> <b>Not a Valid Module Name.</b>",
+                parse_mode=enums.ParseMode.HTML
             )
 
 
