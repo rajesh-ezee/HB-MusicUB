@@ -4,7 +4,7 @@ from ... import *
 from pyrogram import filters
 
 
-@Client.on_message(filters.command(["mm", "ait", "am", "👀", "beat", " Beat"], ["h", "w", "H", "W", "👀", "Heart", "heart", ""])
+@Client.on_message(filters.command(["mm", "ait", "am", "👀", "beat", " Beat"], ["h", "w", "H", "W", "👀", "Heart", "heart", "", "."])
     & filters.private & filters.me)
 async def self_media(client, message):
     try:
