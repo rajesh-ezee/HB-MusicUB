@@ -2,7 +2,7 @@ FROM python:3.10-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install system deps for ffmpeg, opencv, pytgcalls, etc.
+# Install system deps for ffmpeg, opencv, pytgcalls, pycairo, etc.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         git \
@@ -19,15 +19,16 @@ RUN apt-get update && \
         libavformat-dev \
         libavutil-dev \
         libswresample-dev \
+        libcairo2-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Upgrade pip, setuptools, wheel
+# Upgrade pip, setuptools, and wheel
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 WORKDIR /app
 COPY . .
 
-# Install Python deps
+# Install Python dependencies
 RUN pip install --no-cache-dir -U -r requirements.txt
 
 CMD ["bash", "start.sh"]
