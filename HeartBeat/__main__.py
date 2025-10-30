@@ -5,6 +5,8 @@ from HeartBeat.helper import join
 from HeartBeat.modules import ALL_MODULES
 from HeartBeat import clients, app, ids
 
+from keep_alive import keep_alive
+
 async def start_bot():
     await app.start()
     print("LOG: Founded Bot token Booting Zeus.")
@@ -22,5 +24,8 @@ async def start_bot():
             print(f"{e}")
     await idle()
 
+#Run Keep Alive
+keep_alive()
+#RunBot
 loop = asyncio.get_event_loop()
 loop.run_until_complete(start_bot())
