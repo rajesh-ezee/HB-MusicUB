@@ -1,8 +1,8 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install build and runtime dependencies for OpenCV, PyTgCalls, and other packages
+# Install system deps for ffmpeg, opencv, pytgcalls, etc.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         git \
@@ -15,16 +15,19 @@ RUN apt-get update && \
         libffi-dev \
         libnacl-dev \
         libssl-dev \
+        libopus-dev \
+        libavformat-dev \
+        libavutil-dev \
+        libswresample-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Upgrade pip
+# Upgrade pip, setuptools, wheel
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
-# Copy files and install requirements
 WORKDIR /app
 COPY . .
 
+# Install Python deps
 RUN pip install --no-cache-dir -U -r requirements.txt
 
-# Default command
 CMD ["bash", "start.sh"]
