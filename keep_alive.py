@@ -7,7 +7,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-RENDER_URL = os.getenv("RENDER_URL","https://silukkuchat-wf4n.onrender.com")
+RENDER_URL = os.getenv("RENDER_URL","https://hb-musicub.onrender.com")
 
 @app.route('/')
 def home():
