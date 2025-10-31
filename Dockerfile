@@ -22,9 +22,6 @@ RUN apt-get update && \
         libcairo2-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# istall kurigram
-RUN mkdir /kurigram && pip install --no-cache-dir git+https://github.com/Itz-fork/Kurigram.git --target /kurigram
-
 # Upgrade pip, setuptools, and wheel
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
